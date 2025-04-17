@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url-shortener-backend
+  template:
+    metadata:
+      labels:
+        app: url-shortener-backend
+    spec:
+      containers:
+      - name: backend
+        image: pes2ug22cs475/backend:1.1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: REDIS_HOST
+          value: "redis"
